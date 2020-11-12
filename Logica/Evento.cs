@@ -8,6 +8,7 @@ namespace Logica
         LlegaCliente,
         FinEmpleado1,
         FinEmpleado2,
-        FinCoccionHorno
+        FinCoccionHorno,
+        EncendidoHorno
     }
 }
