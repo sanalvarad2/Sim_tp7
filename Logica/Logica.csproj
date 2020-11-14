@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SIM\simulacion-2020\Simulacion.Utilidades\Simulacion.Utilidades.csproj" />
+    <ProjectReference Include="..\Simulacion.Utilidades\Simulacion.Utilidades.csproj" />
   </ItemGroup>
 
 </Project>
