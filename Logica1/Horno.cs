@@ -22,7 +22,7 @@ namespace Logica
             double cantMinutos = 0.0;
             this.CantElementos = CantidadElementos;
 
-            for (t = 0.0; Math.Round(cantMinutos / condicionesHorno.EquivalenteMinutos, 0) < 15; t += h)
+            for (t = 0.0; Math.Floor(cantMinutos / condicionesHorno.EquivalenteMinutos) < 15; t += h)
             {
                 double k1 = h * (-0.5 * T + 900/(double)CantidadElementos);
                 double k2 = h * (-0.5 * (T + 0.5 * k1) + 900 / (double)CantidadElementos);

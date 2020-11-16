@@ -176,7 +176,7 @@ namespace Logica
         public void ObtenerTiempoFindeCoccion( long tiempo)
         {
             tiempoProximoEncendidoHorno = tiempo + (long)horno.getProximoEncendidoHorno();
-            int cantProducto = stock != 0 ? 30 : 45;
+            int cantProducto = stock != 0 ? condicionesIniciales.condicionesHorno.cantElementosConStock : condicionesIniciales.condicionesHorno.cantElementosSinStock;
             long tAux = horno.getTiempodeCoccion(cantProducto);
             tiempoFinCoccion = tAux + tiempo;
 
