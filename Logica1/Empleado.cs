@@ -38,6 +38,7 @@ namespace Logica
         public void finalizarAtencion()
         {
             cliente = null;
+            Libre = true;
 
         }
 

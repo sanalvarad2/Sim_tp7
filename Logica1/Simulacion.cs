@@ -50,7 +50,16 @@ namespace Logica
 
         private void FinAtencion(Empleado empleado)
         {
-            throw new NotImplementedException();
+            if(estadoActual.colaClientes.Count != 0)
+            {
+                Cliente cliente = estadoActual.colaClientes.First();
+                estadoActual.colaClientes.RemoveAt(0);
+                empleado.SetCliente(cliente, estadoActual.tiempo);
+            }
+            else
+            {
+                empleado.finalizarAtencion();
+            }
         }
 
         private void FinConccionHorno()
