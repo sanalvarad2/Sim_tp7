@@ -28,30 +28,75 @@ namespace Logica
                 case Evento.LlegaCliente:
                     LlegaCliente();
                     break;
+                case Evento.EncendidoHorno:
+                    EncendidoHorno();
+                    break;
+                case Evento.FinCoccionHorno:
+                    FinConccionHorno();
+                    break;
+                case Evento.FinEmpleado1:
+                    FinAtencion(estadoActual.empleado1);
+                    break;
+                case Evento.FinEmpleado2:
+                    FinAtencion(estadoActual.empleado2);
+                    break;
             }
 
+
+            estadoActual.CalcularTiempoProximoEvento();
+            estadoAnterior = estadoActual;
             return estadoAnterior;
+        }
+
+        private void FinAtencion(Empleado empleado)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FinConccionHorno()
+        {
+            estadoActual.horno.setEstado(false);
+            int elem = estadoActual.horno.getCantidadElementosCoccion();
+            estadoActual.stock += elem;
+            estadoActual.SetearTiempoProximoInicioHorno();
+        }
+
+        private void EncendidoHorno()
+        {
+            estadoActual.ObtenerTiempoFindeCoccion();
         }
 
         private void LlegaCliente()
         {
             Cliente cliente = new Cliente(estadoActual.tiempo, estadoActual.numeroCliente);
+            estadoActual.numeroCliente++;
 
-            List<Empleado> ListaEmpleados = new List<Empleado>
+            if(estadoActual.stock == 0)
+            {
+                if (estadoActual.horno.getEstado())
+                {
+                    if (estadoActual.tiempoFinCoccion > cliente.TiempoLimite)
+                        estadoActual.clientesPerdidos++;
+                }
+            }
+            else
+            {
+                List<Empleado> ListaEmpleados = new List<Empleado>
             {
                 estadoActual.empleado1,
                 estadoActual.empleado2
             };
 
-            Empleado empleado = ListaEmpleados.FindAll(x => x.Libre).FirstOrDefault();
+                Empleado empleado = ListaEmpleados.FindAll(x => x.Libre).FirstOrDefault();
 
-            if(empleado != null)
-            {
-                empleado.SetCliente(cliente);
-            }
-            else
-            {
-                estadoActual.colaClientes.Add(cliente);
+                if (empleado != null)
+                {
+                    empleado.SetCliente(cliente, estadoActual.tiempo);
+                }
+                else
+                {
+                    estadoActual.colaClientes.Add(cliente);
+                }
             }
 
             estadoActual.ObtenerTiempoLlegadaProximoCliente(estadoActual.tiempo);

@@ -41,16 +41,16 @@ namespace Logica
 
         }
 
-        public void SetCliente(Cliente cliente)
+        public void SetCliente(Cliente cliente, long tiempo)
         {
             this.cliente = cliente;
             Libre = false;
-            generarTiempoAtencion();
+            generarTiempoAtencion(tiempo);
         }
 
-        private void generarTiempoAtencion()
+        private void generarTiempoAtencion(long tiempo)
         {
-            TiempoFinAtencion = (long)generador.ObtenerVariableAleatoria();
+            TiempoFinAtencion = (long)generador.ObtenerVariableAleatoria() + tiempo;
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class CondicionesEmpleado
     {
-        public double aEmpleado { get; internal set; }
-        public double bEmpleado { get; internal set; }
+        public double aEmpleado { get; set; }
+        public double bEmpleado { get; set; }
     }
 }

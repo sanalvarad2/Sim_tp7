@@ -7,14 +7,26 @@ namespace Logica
     {
         private static CondicionesHorno condicionesHorno { get; set; }
         private int CantElementos { get; set; }
+        private bool Encendido { get; set; }
 
         public static void SetEstadosIniciales(CondicionesHorno condicionesIHorno)
         {
             condicionesHorno = condicionesIHorno;
         }
 
+        public bool getEstado()
+        {
+            return Encendido;
+        }
+        public void setEstado(bool estado)
+        {
+            Encendido = estado;
+        }
+
         public long getTiempodeCoccion(int CantidadElementos)
         {
+            Encendido = true;
+
             double t;
             double h = condicionesHorno.paso;
             double T = condicionesHorno.tempInicia;
@@ -47,9 +59,9 @@ namespace Logica
             return tiempo;
         }
 
-        public double getProximoEncendidoHorno()
+        public long getProximoEncendidoHorno()
         {
-            return condicionesHorno.TiempoEntreInicio;
+            return (long) condicionesHorno.TiempoEntreInicio;
         }
 
         public int getCantidadElementosCoccion()

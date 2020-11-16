@@ -36,6 +36,7 @@ namespace Logica
             Empleado.SetEstadosIniciales(this.condicionesIniciales.condicionesEmpleado);
             tiempo = 0;
             evento = Evento.Inicio;
+            tiempoProximoEncendidoHorno = 0;
             empleado1 = new Empleado(Evento.FinEmpleado1);//crear contructor
             empleado2 = new Empleado(Evento.FinEmpleado2);
             horno = new Horno();
@@ -45,7 +46,7 @@ namespace Logica
             stock = 0;
             clientesPerdidos = 0;
             ObtenerTiempoLlegadaProximoCliente(tiempo);
-            ObtenerTiempoFindeCoccion(tiempo);
+            //ObtenerTiempoFindeCoccion(tiempo);
             CalcularTiempoProximoEvento();
             
 
@@ -68,7 +69,7 @@ namespace Logica
             {
                 if(tiempoLlegadaProximoCliente < tiempoFinCoccion)
                 {
-                    if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno)
+                    if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno || horno.getEstado())
                     {
                         tiempoProximoEvento = tiempoLlegadaProximoCliente;
                         proximoEvento = Evento.LlegaCliente;
@@ -82,7 +83,7 @@ namespace Logica
                 }
                 else
                 {
-                    if(tiempoFinCoccion < tiempoProximoEncendidoHorno)
+                    if(tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
                     {
                         tiempoProximoEvento = tiempoFinCoccion;
                         proximoEvento = Evento.FinCoccionHorno;
@@ -101,7 +102,7 @@ namespace Logica
                 {
                     if (tiempoLlegadaProximoCliente < tiempoFinCoccion)
                     {
-                        if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno)
+                        if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno || horno.getEstado())
                         {
                             tiempoProximoEvento = tiempoLlegadaProximoCliente;
                             proximoEvento = Evento.LlegaCliente;
@@ -115,7 +116,7 @@ namespace Logica
                     }
                     else
                     {
-                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno)
+                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
                         {
                             tiempoProximoEvento = tiempoFinCoccion;
                             proximoEvento = Evento.FinCoccionHorno;
@@ -132,7 +133,7 @@ namespace Logica
                 {
                     if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoFinCoccion)
                     {
-                        if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoProximoEncendidoHorno)
+                        if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoProximoEncendidoHorno || horno.getEstado())
                         {
                             tiempoProximoEvento = ProximoEmpleado.ObtenerTiempoFinDeAtencion();
                             proximoEvento = ProximoEmpleado.obtenerEventoEmpleado();
@@ -146,7 +147,7 @@ namespace Logica
                     }
                     else
                     {
-                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno)
+                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
                         {
                             tiempoProximoEvento = tiempoFinCoccion;
                             proximoEvento = Evento.FinCoccionHorno;
@@ -173,13 +174,18 @@ namespace Logica
             tiempoLlegadaProximoCliente += tiempo;
         }
 
-        public void ObtenerTiempoFindeCoccion( long tiempo)
-        {
-            tiempoProximoEncendidoHorno = tiempo + (long)horno.getProximoEncendidoHorno();
+        public void ObtenerTiempoFindeCoccion()
+        {           
             int cantProducto = stock != 0 ? condicionesIniciales.condicionesHorno.cantElementosConStock : condicionesIniciales.condicionesHorno.cantElementosSinStock;
             long tAux = horno.getTiempodeCoccion(cantProducto);
             tiempoFinCoccion = tAux + tiempo;
 
+        }
+
+
+        public void SetearTiempoProximoInicioHorno()
+        {
+            tiempoProximoEncendidoHorno = horno.getProximoEncendidoHorno() + tiempo;
         }
 
         public EstadoSimulacion Clone()
