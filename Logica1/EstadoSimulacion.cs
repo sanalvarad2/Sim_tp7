@@ -65,103 +65,33 @@ namespace Logica
 
             Empleado ProximoEmpleado = ListaEmpleados.FindAll(x => !x.Libre).OrderBy(x => x.ObtenerTiempoFinDeAtencion()).FirstOrDefault();
 
-            if (ProximoEmpleado == null)
+            tiempoProximoEvento = tiempoLlegadaProximoCliente;
+            proximoEvento = Evento.LlegaCliente;
+
+            if(ProximoEmpleado != null)
             {
-                if(tiempoLlegadaProximoCliente < tiempoFinCoccion)
+                if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoProximoEvento)
                 {
-                    if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno || horno.getEstado())
-                    {
-                        tiempoProximoEvento = tiempoLlegadaProximoCliente;
-                        proximoEvento = Evento.LlegaCliente;
-                    }
-                    else
-                    {
-                        tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                        proximoEvento = Evento.EncendidoHorno;
-                    }
-
-                }
-                else
-                {
-                    if(tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
-                    {
-                        tiempoProximoEvento = tiempoFinCoccion;
-                        proximoEvento = Evento.FinCoccionHorno;
-                    }
-                    else
-                    {
-                        tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                        proximoEvento = Evento.EncendidoHorno;
-                    }
-
+                    tiempoProximoEvento = ProximoEmpleado.ObtenerTiempoFinDeAtencion();
+                    proximoEvento = ProximoEmpleado.obtenerEventoEmpleado();
                 }
             }
-            else
+
+            if (tiempoProximoEvento > tiempoFinCoccion && horno.getEstado())
             {
-                if(ProximoEmpleado.ObtenerTiempoFinDeAtencion() > tiempoLlegadaProximoCliente)
-                {
-                    if (tiempoLlegadaProximoCliente < tiempoFinCoccion)
-                    {
-                        if (tiempoLlegadaProximoCliente < tiempoProximoEncendidoHorno || horno.getEstado())
-                        {
-                            tiempoProximoEvento = tiempoLlegadaProximoCliente;
-                            proximoEvento = Evento.LlegaCliente;
-                        }
-                        else
-                        {
-                            tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                            proximoEvento = Evento.EncendidoHorno;
-                        }
-
-                    }
-                    else
-                    {
-                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
-                        {
-                            tiempoProximoEvento = tiempoFinCoccion;
-                            proximoEvento = Evento.FinCoccionHorno;
-                        }
-                        else
-                        {
-                            tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                            proximoEvento = Evento.EncendidoHorno;
-                        }
-
-                    }
-                }
-                else
-                {
-                    if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoFinCoccion)
-                    {
-                        if (ProximoEmpleado.ObtenerTiempoFinDeAtencion() < tiempoProximoEncendidoHorno || horno.getEstado())
-                        {
-                            tiempoProximoEvento = ProximoEmpleado.ObtenerTiempoFinDeAtencion();
-                            proximoEvento = ProximoEmpleado.obtenerEventoEmpleado();
-                        }
-                        else
-                        {
-                            tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                            proximoEvento = Evento.EncendidoHorno;
-                        }
-
-                    }
-                    else
-                    {
-                        if (tiempoFinCoccion < tiempoProximoEncendidoHorno || horno.getEstado())
-                        {
-                            tiempoProximoEvento = tiempoFinCoccion;
-                            proximoEvento = Evento.FinCoccionHorno;
-                        }
-                        else
-                        {
-                            tiempoProximoEvento = tiempoProximoEncendidoHorno;
-                            proximoEvento = Evento.EncendidoHorno;
-                        }
-
-                    }
-
-                }
+                tiempoProximoEvento = tiempoFinCoccion;
+                proximoEvento = Evento.FinCoccionHorno;
             }
+
+            if(tiempoProximoEvento > tiempoProximoEncendidoHorno && !horno.getEstado())
+            {
+                tiempoProximoEvento = tiempoProximoEncendidoHorno;
+                proximoEvento = Evento.EncendidoHorno;
+            }
+
+
+
+
             
             numeroEvento++;
         }
@@ -179,13 +109,8 @@ namespace Logica
             int cantProducto = stock != 0 ? condicionesIniciales.condicionesHorno.cantElementosConStock : condicionesIniciales.condicionesHorno.cantElementosSinStock;
             long tAux = horno.getTiempodeCoccion(cantProducto);
             tiempoFinCoccion = tAux + tiempo;
+            tiempoProximoEncendidoHorno = tiempoFinCoccion + horno.getProximoEncendidoHorno();
 
-        }
-
-
-        public void SetearTiempoProximoInicioHorno()
-        {
-            tiempoProximoEncendidoHorno = horno.getProximoEncendidoHorno() + tiempo;
         }
 
         public EstadoSimulacion Clone()
@@ -201,6 +126,7 @@ namespace Logica
                 empleado1 = empleado1,
                 empleado2 = empleado2,
                 numeroEvento = numeroEvento,
+                numeroCliente = numeroCliente,
                 colaClientes = colaClientes,
                 horno = horno,
                 stock = stock,

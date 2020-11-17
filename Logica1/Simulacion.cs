@@ -7,7 +7,7 @@ namespace Logica
 {
     public class Simulacion
     {
-        private EstadoSimulacion estadoAnterior { get; set; }
+        public EstadoSimulacion estadoAnterior { get; set; }
         private EstadoSimulacion estadoActual { get; set; }
         private Condiciones.Condiciones condIniciales { get; set; }
 
@@ -23,6 +23,15 @@ namespace Logica
             estadoActual.tiempo = estadoAnterior.tiempoProximoEvento;
             estadoActual.evento = estadoAnterior.proximoEvento;
            
+
+            if(estadoActual.stock == 0 && estadoActual.colaClientes.Count()!=0)
+            {
+                estadoActual.clientesPerdidos += estadoActual.colaClientes.Count();
+                estadoActual.colaClientes.Clear();
+            }
+
+
+
             switch (estadoActual.evento)
             {
                 case Evento.LlegaCliente:
@@ -50,7 +59,12 @@ namespace Logica
 
         private void FinAtencion(Empleado empleado)
         {
-            if(estadoActual.colaClientes.Count != 0)
+            if (estadoActual.stock >= empleado.cliente.CantidadPedido)
+                estadoActual.stock -= empleado.cliente.CantidadPedido;
+            else
+                estadoActual.stock = 0;
+
+            if (estadoActual.colaClientes.Count != 0)
             {
                 Cliente cliente = estadoActual.colaClientes.First();
                 estadoActual.colaClientes.RemoveAt(0);
@@ -60,6 +74,7 @@ namespace Logica
             {
                 empleado.finalizarAtencion();
             }
+            
         }
 
         private void FinConccionHorno()
@@ -67,7 +82,6 @@ namespace Logica
             estadoActual.horno.setEstado(false);
             int elem = estadoActual.horno.getCantidadElementosCoccion();
             estadoActual.stock += elem;
-            estadoActual.SetearTiempoProximoInicioHorno();
         }
 
         private void EncendidoHorno()
