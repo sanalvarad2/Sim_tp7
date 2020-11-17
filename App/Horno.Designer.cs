@@ -46,6 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblEquiv = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorno)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,7 +156,7 @@
             this.txtEquiv.Name = "txtEquiv";
             this.txtEquiv.Size = new System.Drawing.Size(100, 20);
             this.txtEquiv.TabIndex = 44;
-            this.txtEquiv.Text = "1";
+            this.txtEquiv.Text = "2";
             // 
             // txtElementos
             // 
@@ -191,11 +193,30 @@
             this.label4.TabIndex = 48;
             this.label4.Text = "Tiempo calculado:";
             // 
-            // Form1
+            // lblEquiv
+            // 
+            this.lblEquiv.AutoSize = true;
+            this.lblEquiv.Location = new System.Drawing.Point(575, 38);
+            this.lblEquiv.Name = "lblEquiv";
+            this.lblEquiv.Size = new System.Drawing.Size(0, 13);
+            this.lblEquiv.TabIndex = 109;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(428, 38);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 13);
+            this.label15.TabIndex = 108;
+            this.label15.Text = "Equivalente en h / mInutos: ";
+            // 
+            // Horno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblEquiv);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.txtTnic);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.lblTiempoCalculado);
@@ -208,7 +229,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label4);
-            this.Name = "Form1";
+            this.Name = "Horno";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorno)).EndInit();
             this.ResumeLayout(false);
@@ -236,6 +257,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblEquiv;
+        private System.Windows.Forms.Label label15;
     }
 }
 

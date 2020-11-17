@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace App
 {
     public partial class Colas : Form
     {
+        private Simulacion sim { get; set; }
         public Colas()
         {
             InitializeComponent();
@@ -33,21 +35,22 @@ namespace App
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-
+            progressBar.Value = 0;
+            lblPorcClientePerdido.Visible = false;
             dgvSimulacion.Rows.Clear();
             dgvSimulacion.Enabled = false;
             btnGenerar.Visible = false;
             progressBar.Visible = true;
 
             Condiciones cIniciales = ObtenerCondiciones();
-            Simulacion sim = new Simulacion(cIniciales);
+            sim = new Simulacion(cIniciales);
             AgregarFila(sim.estadoAnterior);
 
             int i = 0;
-
+            EstadoSimulacion s = sim.estadoAnterior;
             while (i <= Convert.ToInt32(txtCantSim.Text))
             {
-                EstadoSimulacion s = sim.GenerarSimulacion();
+                s = sim.GenerarSimulacion();
                 if(s.numeroEvento >= Convert.ToInt32(txtSimApartir.Text) && s.numeroEvento<= Convert.ToInt32(txtSimApartir.Text) + 50)
                 {
                     AgregarFila(s);
@@ -98,11 +101,26 @@ namespace App
                 }
                 i++;
             }
+            lblPorcClientePerdido.Visible = true;
+            lblPorcClientePerdido.Text = StringifyCifra((double)(s.clientesPerdidos / (double)s.numeroCliente) * 100) +"%";
             progressBar.Visible = false;
             btnGenerar.Visible = true;
             dgvSimulacion.Enabled = true;
 
 
+        }
+
+        private string StringifyCifra(double cifra)
+        {
+            var nfi = new NumberFormatInfo
+            {
+                NumberDecimalSeparator = ",",
+                NumberGroupSeparator = "."
+            };
+
+            string resultado = cifra.ToString("#,##0.0000", nfi);
+
+            return resultado;
         }
 
         private void AgregarFila(EstadoSimulacion estado)
@@ -170,7 +188,7 @@ namespace App
                 }
             };
 
-
+            lblEquiv.Text = StringifyCifra(cond.condicionesHorno.EquivalenteMinutos / cond.condicionesHorno.paso);
             return cond;
         }
 

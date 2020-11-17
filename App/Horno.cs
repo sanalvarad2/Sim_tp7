@@ -58,6 +58,8 @@ namespace App
 
             dgvHorno.Rows.Add(StringifyCifra(t), StringifyCifra(T), "-", "-", "-", "-");
 
+            lblEquiv.Text = StringifyCifra(EquvTiempo / h);
+
             long tiempo = (long)(t / EquvTiempo * 60.0);
             lblTiempoCalculado.Text = StringifyHora((int)tiempo);
         }
