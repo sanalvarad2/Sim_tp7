@@ -82,6 +82,7 @@
             this.HornoEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HornoHoraFinCoccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HornoCantidadElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimulacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +106,7 @@
             // btnGenerarSimulacionDiaria
             // 
             this.btnGenerarSimulacionDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerarSimulacionDiaria.Location = new System.Drawing.Point(1144, 31);
+            this.btnGenerarSimulacionDiaria.Location = new System.Drawing.Point(1146, 25);
             this.btnGenerarSimulacionDiaria.Name = "btnGenerarSimulacionDiaria";
             this.btnGenerarSimulacionDiaria.Size = new System.Drawing.Size(191, 46);
             this.btnGenerarSimulacionDiaria.TabIndex = 93;
@@ -134,7 +135,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerar.Location = new System.Drawing.Point(1144, 85);
+            this.btnGenerar.Location = new System.Drawing.Point(1146, 84);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(191, 46);
             this.btnGenerar.TabIndex = 86;
@@ -526,11 +527,21 @@
             this.HornoCantidadElem.Name = "HornoCantidadElem";
             this.HornoCantidadElem.ReadOnly = true;
             // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(1146, 84);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(189, 46);
+            this.progressBar.TabIndex = 103;
+            this.progressBar.Visible = false;
+            // 
             // Colas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1356, 624);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.txtMostrarCada);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -634,5 +645,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoHoraFinCoccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoCantidadElem;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

@@ -35,6 +35,9 @@ namespace App
         {
 
             dgvSimulacion.Rows.Clear();
+            dgvSimulacion.Enabled = false;
+            btnGenerar.Visible = false;
+            progressBar.Visible = true;
 
             Condiciones cIniciales = ObtenerCondiciones();
             Simulacion sim = new Simulacion(cIniciales);
@@ -52,8 +55,52 @@ namespace App
                 else if(s.numeroEvento % Convert.ToInt32(txtMostrarCada.Text) == 0){
                     AgregarFila(s);
                 }
+
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10)
+                {
+                    progressBar.Value = 10;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 2)
+                {
+                    progressBar.Value = 20;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 3)
+                {
+                    progressBar.Value = 30;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 4)
+                {
+                    progressBar.Value = 40;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 5)
+                {
+                    progressBar.Value = 50;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 60)
+                {
+                    progressBar.Value = 60;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 7)
+                {
+                    progressBar.Value = 70;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 8)
+                {
+                    progressBar.Value = 80;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text) / 10 * 9)
+                {
+                    progressBar.Value = 90;
+                }
+                if (i == Convert.ToInt32(txtCantSim.Text))
+                {
+                    progressBar.Value = 100;
+                }
                 i++;
             }
+            progressBar.Visible = false;
+            btnGenerar.Visible = true;
+            dgvSimulacion.Enabled = true;
 
 
         }

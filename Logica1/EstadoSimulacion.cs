@@ -46,7 +46,6 @@ namespace Logica
             stock = 0;
             clientesPerdidos = 0;
             ObtenerTiempoLlegadaProximoCliente(tiempo);
-            //ObtenerTiempoFindeCoccion(tiempo);
             CalcularTiempoProximoEvento();
             
 
@@ -86,6 +85,12 @@ namespace Logica
             if(tiempoProximoEvento > tiempoProximoEncendidoHorno && !horno.getEstado())
             {
                 tiempoProximoEvento = tiempoProximoEncendidoHorno;
+                proximoEvento = Evento.EncendidoHorno;
+            }
+
+            if(stock == 0 && !horno.getEstado())
+            {
+                tiempoProximoEvento = tiempo + 1 ;
                 proximoEvento = Evento.EncendidoHorno;
             }
 

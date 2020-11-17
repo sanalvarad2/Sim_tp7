@@ -23,15 +23,6 @@ namespace Logica
             estadoActual.tiempo = estadoAnterior.tiempoProximoEvento;
             estadoActual.evento = estadoAnterior.proximoEvento;
            
-
-            if(estadoActual.stock == 0 && estadoActual.colaClientes.Count()!=0)
-            {
-                estadoActual.clientesPerdidos += estadoActual.colaClientes.Count();
-                estadoActual.colaClientes.Clear();
-            }
-
-
-
             switch (estadoActual.evento)
             {
                 case Evento.LlegaCliente:
@@ -50,7 +41,6 @@ namespace Logica
                     FinAtencion(estadoActual.empleado2);
                     break;
             }
-
 
             estadoActual.CalcularTiempoProximoEvento();
             estadoAnterior = estadoActual;
@@ -74,7 +64,13 @@ namespace Logica
             {
                 empleado.finalizarAtencion();
             }
-            
+
+            if (estadoActual.stock == 0 && estadoActual.colaClientes.Count() != 0)
+            {
+                estadoActual.clientesPerdidos += estadoActual.colaClientes.Count();
+                estadoActual.colaClientes.Clear();
+            }
+
         }
 
         private void FinConccionHorno()
@@ -82,6 +78,38 @@ namespace Logica
             estadoActual.horno.setEstado(false);
             int elem = estadoActual.horno.getCantidadElementosCoccion();
             estadoActual.stock += elem;
+
+            if(estadoActual.colaClientes.Count() != 0)
+            {
+                List<Empleado> ListaEmpleados = new List<Empleado>
+                {
+                    estadoActual.empleado1,
+                    estadoActual.empleado2
+                };
+
+                ListaEmpleados = ListaEmpleados.FindAll(x => x.Libre);
+                if (ListaEmpleados.Count() == 2 && estadoActual.colaClientes.Count() > 1)
+                {
+                    Empleado empleado = ListaEmpleados.ElementAt(0);
+                    empleado.SetCliente(estadoActual.colaClientes.First(), estadoActual.tiempo);
+                    estadoActual.colaClientes.RemoveAt(0);
+
+                    Empleado empleado2 = ListaEmpleados.ElementAt(1);
+                    empleado2.SetCliente(estadoActual.colaClientes.First(), estadoActual.tiempo);
+                    estadoActual.colaClientes.RemoveAt(0);
+                }
+                else
+                {
+
+                    Empleado empleado = ListaEmpleados.FirstOrDefault();
+
+                    if (empleado != null)
+                    {
+                        empleado.SetCliente(estadoActual.colaClientes.First(), estadoActual.tiempo);
+                        estadoActual.colaClientes.RemoveAt(0);
+                    }
+                }
+            }
         }
 
         private void EncendidoHorno()
@@ -94,21 +122,23 @@ namespace Logica
             Cliente cliente = new Cliente(estadoActual.tiempo, estadoActual.numeroCliente);
             estadoActual.numeroCliente++;
 
-            if(estadoActual.stock == 0)
+            if (estadoActual.stock == 0)
             {
                 if (estadoActual.horno.getEstado())
                 {
                     if (estadoActual.tiempoFinCoccion > cliente.TiempoLimite)
                         estadoActual.clientesPerdidos++;
+                    else
+                        estadoActual.colaClientes.Add(cliente);
                 }
             }
             else
             {
                 List<Empleado> ListaEmpleados = new List<Empleado>
-            {
-                estadoActual.empleado1,
-                estadoActual.empleado2
-            };
+                {
+                    estadoActual.empleado1,
+                    estadoActual.empleado2
+                };
 
                 Empleado empleado = ListaEmpleados.FindAll(x => x.Libre).FirstOrDefault();
 
