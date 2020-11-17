@@ -66,6 +66,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtMostrarCada = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.NroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,14 +76,15 @@
             this.CantClientesPerdido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado1Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Emp1CantElemCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado1TiempoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado2Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado2NroCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emp2CantElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empleado2TiempoFinCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HornoEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HornoHoraFinCoccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HornoCantidadElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimulacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -315,9 +317,11 @@
             this.CantClientesPerdido,
             this.Empleado1Estado,
             this.Empleado1Cliente,
+            this.Emp1CantElemCliente,
             this.Empleado1TiempoCliente,
             this.Empleado2Estado,
             this.Empleado2NroCliente,
+            this.emp2CantElem,
             this.Empleado2TiempoFinCliente,
             this.HornoEstado,
             this.HornoHoraFinCoccion,
@@ -436,6 +440,15 @@
             this.label13.TabIndex = 101;
             this.label13.Text = "Mostrar Cada: ";
             // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(1146, 84);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(189, 46);
+            this.progressBar.TabIndex = 103;
+            this.progressBar.Visible = false;
+            // 
             // NroEvento
             // 
             this.NroEvento.HeaderText = "Número de evento";
@@ -485,6 +498,11 @@
             this.Empleado1Cliente.Name = "Empleado1Cliente";
             this.Empleado1Cliente.ReadOnly = true;
             // 
+            // Emp1CantElemCliente
+            // 
+            this.Emp1CantElemCliente.HeaderText = "Empleado 1: Cantidad Elementos Cliente";
+            this.Emp1CantElemCliente.Name = "Emp1CantElemCliente";
+            // 
             // Empleado1TiempoCliente
             // 
             this.Empleado1TiempoCliente.HeaderText = "Empleado 1: Hora finalizacion de Atencion Cliente";
@@ -502,6 +520,11 @@
             this.Empleado2NroCliente.HeaderText = "Empleado 2: Nro Cliente";
             this.Empleado2NroCliente.Name = "Empleado2NroCliente";
             this.Empleado2NroCliente.ReadOnly = true;
+            // 
+            // emp2CantElem
+            // 
+            this.emp2CantElem.HeaderText = "Empleado 2: Cantidad Elementos Cliente";
+            this.emp2CantElem.Name = "emp2CantElem";
             // 
             // Empleado2TiempoFinCliente
             // 
@@ -526,15 +549,6 @@
             this.HornoCantidadElem.HeaderText = "Horno: Cantidad de Elementos";
             this.HornoCantidadElem.Name = "HornoCantidadElem";
             this.HornoCantidadElem.ReadOnly = true;
-            // 
-            // progressBar
-            // 
-            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(1146, 84);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(189, 46);
-            this.progressBar.TabIndex = 103;
-            this.progressBar.Visible = false;
             // 
             // Colas
             // 
@@ -629,6 +643,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtMostrarCada;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.DataGridViewTextBoxColumn NroEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Reloj;
@@ -638,13 +653,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CantClientesPerdido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado1Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado1Cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Emp1CantElemCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado1TiempoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado2Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado2NroCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emp2CantElem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empleado2TiempoFinCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoHoraFinCoccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoCantidadElem;
-        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

@@ -118,12 +118,14 @@ namespace App
             #region Empleado1
             string emp1Estado = estado.empleado1.Libre ? "Libre" : "Ocupado";
             string emp1NroCliente = estado.empleado1.Libre ? "-" : estado.empleado1.cliente.id.ToString();
+            string emp1CantElem = estado.empleado1.Libre ? "-" : estado.empleado1.cliente.CantidadPedido.ToString();
             string emp1tiempoAtencion = estado.empleado1.Libre ? "-" : StringifyHora(estado.empleado1.TiempoFinAtencion);
             #endregion
 
             #region Empleado2
             string emp2Estado = estado.empleado2.Libre ? "Libre" : "Ocupado";
             string emp2NroCliente = estado.empleado2.Libre ? "-" : estado.empleado2.cliente.id.ToString();
+            string emp2CantElem = estado.empleado2.Libre ? "-" : estado.empleado2.cliente.CantidadPedido.ToString();
             string emp2tiempoAtencion = estado.empleado2.Libre ? "-": StringifyHora(estado.empleado2.TiempoFinAtencion);
             #endregion
 
@@ -134,8 +136,8 @@ namespace App
             #endregion
 
 
-            dgvSimulacion.Rows.Add(numeroEvento, evento, reloj, tiempoProximoCliente, stock, colaClientes, clientesPerdidos, emp1Estado, emp1NroCliente, emp1tiempoAtencion,
-                emp2Estado, emp2NroCliente, emp2tiempoAtencion, hornoEstado, hornoTiempoCoccion, hornoCantElementos);
+            dgvSimulacion.Rows.Add(numeroEvento, evento, reloj, tiempoProximoCliente, stock, colaClientes, clientesPerdidos, emp1Estado, emp1NroCliente, emp1CantElem, emp1tiempoAtencion,
+                emp2Estado, emp2NroCliente, emp2CantElem, emp2tiempoAtencion, hornoEstado, hornoTiempoCoccion, hornoCantElementos);
         }
 
         private Condiciones ObtenerCondiciones()
@@ -146,7 +148,7 @@ namespace App
                 condicionesCliente = new CondicionesCliente()
                 {
                     aProducto = Convert.ToInt32(txtaCliente.Text),
-                    bProducto = Convert.ToInt32(txtbCliente.Text),
+                    bProducto = Convert.ToInt32(txtbCliente.Text) + 1 ,
                     lamdaLlegada = 1 / (Convert.ToDouble(txtMediaCliente.Text) * 60.0),
                     TiempoLimite = (long)(Convert.ToDouble(txttiempoLimite.Text) * 60)
                 },
