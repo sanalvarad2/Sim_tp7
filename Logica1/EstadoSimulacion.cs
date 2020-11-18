@@ -90,7 +90,7 @@ namespace Logica
 
             if(stock == 0 && !horno.getEstado())
             {
-                tiempoProximoEvento = tiempo + 1 ;
+                tiempoProximoEvento = tiempo ;
                 proximoEvento = Evento.EncendidoHorno;
             }
 

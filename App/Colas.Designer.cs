@@ -53,24 +53,6 @@
             this.txtaCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvSimulacion = new System.Windows.Forms.DataGridView();
-            this.NroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraLlegadaProximoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColaDeClientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantClientesPerdido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado1Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Emp1CantElemCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado1TiempoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado2Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado2NroCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emp2CantElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado2TiempoFinCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HornoEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HornoHoraFinCoccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HornoCantidadElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtHornoCantSStock = new System.Windows.Forms.TextBox();
             this.txtHornoCantStock = new System.Windows.Forms.TextBox();
             this.txtEquivalenciaEnMinutos = new System.Windows.Forms.TextBox();
@@ -89,6 +71,24 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lblEquiv = new System.Windows.Forms.Label();
+            this.NroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoraLlegadaProximoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColaDeClientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantClientesPerdido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado1Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Emp1CantElemCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado1TiempoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado2Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado2NroCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emp2CantElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado2TiempoFinCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HornoEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HornoHoraFinCoccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HornoCantidadElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimulacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -335,107 +335,6 @@
             this.dgvSimulacion.Size = new System.Drawing.Size(1340, 478);
             this.dgvSimulacion.TabIndex = 51;
             // 
-            // NroEvento
-            // 
-            this.NroEvento.HeaderText = "Número de evento";
-            this.NroEvento.Name = "NroEvento";
-            // 
-            // TipoEvento
-            // 
-            this.TipoEvento.HeaderText = "Tipo de evento";
-            this.TipoEvento.Name = "TipoEvento";
-            // 
-            // Reloj
-            // 
-            this.Reloj.HeaderText = "Reloj";
-            this.Reloj.Name = "Reloj";
-            // 
-            // HoraLlegadaProximoPedido
-            // 
-            this.HoraLlegadaProximoPedido.HeaderText = "Hora de llegada del próximo pedido";
-            this.HoraLlegadaProximoPedido.Name = "HoraLlegadaProximoPedido";
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            // 
-            // ColaDeClientes
-            // 
-            this.ColaDeClientes.HeaderText = "Cola de Clientes";
-            this.ColaDeClientes.Name = "ColaDeClientes";
-            // 
-            // CantClientesPerdido
-            // 
-            this.CantClientesPerdido.HeaderText = "Clientes Perdidos";
-            this.CantClientesPerdido.Name = "CantClientesPerdido";
-            this.CantClientesPerdido.ReadOnly = true;
-            // 
-            // Empleado1Estado
-            // 
-            this.Empleado1Estado.HeaderText = "Empleado 1: Estado";
-            this.Empleado1Estado.Name = "Empleado1Estado";
-            this.Empleado1Estado.ReadOnly = true;
-            // 
-            // Empleado1Cliente
-            // 
-            this.Empleado1Cliente.HeaderText = "Empleado 1: Nro Cliente";
-            this.Empleado1Cliente.Name = "Empleado1Cliente";
-            this.Empleado1Cliente.ReadOnly = true;
-            // 
-            // Emp1CantElemCliente
-            // 
-            this.Emp1CantElemCliente.HeaderText = "Empleado 1: Cantidad Elementos Cliente";
-            this.Emp1CantElemCliente.Name = "Emp1CantElemCliente";
-            // 
-            // Empleado1TiempoCliente
-            // 
-            this.Empleado1TiempoCliente.HeaderText = "Empleado 1: Hora finalizacion de Atencion Cliente";
-            this.Empleado1TiempoCliente.Name = "Empleado1TiempoCliente";
-            this.Empleado1TiempoCliente.ReadOnly = true;
-            // 
-            // Empleado2Estado
-            // 
-            this.Empleado2Estado.HeaderText = "Empleado 2: Estado";
-            this.Empleado2Estado.Name = "Empleado2Estado";
-            this.Empleado2Estado.ReadOnly = true;
-            // 
-            // Empleado2NroCliente
-            // 
-            this.Empleado2NroCliente.HeaderText = "Empleado 2: Nro Cliente";
-            this.Empleado2NroCliente.Name = "Empleado2NroCliente";
-            this.Empleado2NroCliente.ReadOnly = true;
-            // 
-            // emp2CantElem
-            // 
-            this.emp2CantElem.HeaderText = "Empleado 2: Cantidad Elementos Cliente";
-            this.emp2CantElem.Name = "emp2CantElem";
-            // 
-            // Empleado2TiempoFinCliente
-            // 
-            this.Empleado2TiempoFinCliente.HeaderText = "Empleado 2: Hora Finalizacion Atencion";
-            this.Empleado2TiempoFinCliente.Name = "Empleado2TiempoFinCliente";
-            this.Empleado2TiempoFinCliente.ReadOnly = true;
-            // 
-            // HornoEstado
-            // 
-            this.HornoEstado.HeaderText = "Horno: Estado";
-            this.HornoEstado.Name = "HornoEstado";
-            this.HornoEstado.ReadOnly = true;
-            // 
-            // HornoHoraFinCoccion
-            // 
-            this.HornoHoraFinCoccion.HeaderText = "Horno: Hora Fin Coccion";
-            this.HornoHoraFinCoccion.Name = "HornoHoraFinCoccion";
-            this.HornoHoraFinCoccion.ReadOnly = true;
-            // 
-            // HornoCantidadElem
-            // 
-            this.HornoCantidadElem.HeaderText = "Horno: Cantidad de Elementos";
-            this.HornoCantidadElem.Name = "HornoCantidadElem";
-            this.HornoCantidadElem.ReadOnly = true;
-            // 
             // txtHornoCantSStock
             // 
             this.txtHornoCantSStock.Location = new System.Drawing.Point(550, 54);
@@ -592,6 +491,107 @@
             this.lblEquiv.Size = new System.Drawing.Size(0, 13);
             this.lblEquiv.TabIndex = 107;
             // 
+            // NroEvento
+            // 
+            this.NroEvento.HeaderText = "Número de evento";
+            this.NroEvento.Name = "NroEvento";
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.HeaderText = "Tipo de evento";
+            this.TipoEvento.Name = "TipoEvento";
+            // 
+            // Reloj
+            // 
+            this.Reloj.HeaderText = "Reloj";
+            this.Reloj.Name = "Reloj";
+            // 
+            // HoraLlegadaProximoPedido
+            // 
+            this.HoraLlegadaProximoPedido.HeaderText = "Hora de llegada del próximo Cliente";
+            this.HoraLlegadaProximoPedido.Name = "HoraLlegadaProximoPedido";
+            // 
+            // Stock
+            // 
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            // 
+            // ColaDeClientes
+            // 
+            this.ColaDeClientes.HeaderText = "Cola de Clientes";
+            this.ColaDeClientes.Name = "ColaDeClientes";
+            // 
+            // CantClientesPerdido
+            // 
+            this.CantClientesPerdido.HeaderText = "Clientes Perdidos";
+            this.CantClientesPerdido.Name = "CantClientesPerdido";
+            this.CantClientesPerdido.ReadOnly = true;
+            // 
+            // Empleado1Estado
+            // 
+            this.Empleado1Estado.HeaderText = "Empleado 1: Estado";
+            this.Empleado1Estado.Name = "Empleado1Estado";
+            this.Empleado1Estado.ReadOnly = true;
+            // 
+            // Empleado1Cliente
+            // 
+            this.Empleado1Cliente.HeaderText = "Empleado 1: Nro Cliente";
+            this.Empleado1Cliente.Name = "Empleado1Cliente";
+            this.Empleado1Cliente.ReadOnly = true;
+            // 
+            // Emp1CantElemCliente
+            // 
+            this.Emp1CantElemCliente.HeaderText = "Empleado 1: Cantidad Elementos Cliente";
+            this.Emp1CantElemCliente.Name = "Emp1CantElemCliente";
+            // 
+            // Empleado1TiempoCliente
+            // 
+            this.Empleado1TiempoCliente.HeaderText = "Empleado 1: Hora finalizacion de Atencion Cliente";
+            this.Empleado1TiempoCliente.Name = "Empleado1TiempoCliente";
+            this.Empleado1TiempoCliente.ReadOnly = true;
+            // 
+            // Empleado2Estado
+            // 
+            this.Empleado2Estado.HeaderText = "Empleado 2: Estado";
+            this.Empleado2Estado.Name = "Empleado2Estado";
+            this.Empleado2Estado.ReadOnly = true;
+            // 
+            // Empleado2NroCliente
+            // 
+            this.Empleado2NroCliente.HeaderText = "Empleado 2: Nro Cliente";
+            this.Empleado2NroCliente.Name = "Empleado2NroCliente";
+            this.Empleado2NroCliente.ReadOnly = true;
+            // 
+            // emp2CantElem
+            // 
+            this.emp2CantElem.HeaderText = "Empleado 2: Cantidad Elementos Cliente";
+            this.emp2CantElem.Name = "emp2CantElem";
+            // 
+            // Empleado2TiempoFinCliente
+            // 
+            this.Empleado2TiempoFinCliente.HeaderText = "Empleado 2: Hora Finalizacion Atencion";
+            this.Empleado2TiempoFinCliente.Name = "Empleado2TiempoFinCliente";
+            this.Empleado2TiempoFinCliente.ReadOnly = true;
+            // 
+            // HornoEstado
+            // 
+            this.HornoEstado.HeaderText = "Horno: Estado";
+            this.HornoEstado.Name = "HornoEstado";
+            this.HornoEstado.ReadOnly = true;
+            // 
+            // HornoHoraFinCoccion
+            // 
+            this.HornoHoraFinCoccion.HeaderText = "Horno: Hora Fin Coccion";
+            this.HornoHoraFinCoccion.Name = "HornoHoraFinCoccion";
+            this.HornoHoraFinCoccion.ReadOnly = true;
+            // 
+            // HornoCantidadElem
+            // 
+            this.HornoCantidadElem.HeaderText = "Horno: Cantidad de Elementos";
+            this.HornoCantidadElem.Name = "HornoCantidadElem";
+            this.HornoCantidadElem.ReadOnly = true;
+            // 
             // Colas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,6 +690,10 @@
         private System.Windows.Forms.TextBox txtMostrarCada;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label lblPorcClientePerdido;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblEquiv;
         private System.Windows.Forms.DataGridViewTextBoxColumn NroEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Reloj;
@@ -708,9 +712,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoHoraFinCoccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn HornoCantidadElem;
-        private System.Windows.Forms.Label lblPorcClientePerdido;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblEquiv;
     }
 }

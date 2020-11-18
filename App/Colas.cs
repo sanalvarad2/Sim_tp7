@@ -35,6 +35,8 @@ namespace App
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+            
+
             progressBar.Value = 0;
             lblPorcClientePerdido.Visible = false;
             dgvSimulacion.Rows.Clear();
@@ -43,6 +45,12 @@ namespace App
             progressBar.Visible = true;
 
             Condiciones cIniciales = ObtenerCondiciones();
+            if (Validar(cIniciales))
+            {
+                MessageBox.Show("Condiciones Erroneas");
+                btnGenerar.Visible = true;
+                return;
+            }
             sim = new Simulacion(cIniciales);
             AgregarFila(sim.estadoAnterior);
 
@@ -118,7 +126,7 @@ namespace App
                 NumberGroupSeparator = "."
             };
 
-            string resultado = cifra.ToString("#,##0.0000", nfi);
+            string resultado = cifra.ToString("#,##0.000", nfi);
 
             return resultado;
         }
@@ -209,6 +217,21 @@ namespace App
                 segundos = "0" + segundos;
 
             return horas + ":" + minutos + ":" + segundos;
+        }
+
+        private bool Validar(Condiciones cond)
+        {
+            bool retVal = false;
+            if (cond.condicionesCliente.aProducto > cond.condicionesCliente.bProducto)
+                retVal = true;
+            if (cond.condicionesCliente.TiempoLimite < 0)
+                retVal = true;
+            if (cond.condicionesEmpleado.aEmpleado > cond.condicionesEmpleado.bEmpleado)
+                retVal = true;
+            if (cond.condicionesHorno.TiempoEntreInicio < 0)
+                retVal = true;
+
+            return retVal;
         }
 
     }
